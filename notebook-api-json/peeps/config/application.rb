@@ -10,6 +10,7 @@ Bundler.require(*Rails.groups)
 # This is not enabled in the peeps source code.
 module Peeps
   class Application < Rails::Application
+    config.autoload_paths += %W(#{config.root}/app/workers)
     config.middleware.insert_before 0, Rack::Cors, :debug => !Rails.env.production?, :logger => (-> { Rails.logger }) do
       allow do
         origins '*'
